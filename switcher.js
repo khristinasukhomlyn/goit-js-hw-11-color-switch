@@ -6,34 +6,30 @@ const colors = [
 '#009688',
 '#795548',
 ];
+
 const refs = {
   bodyRef: document.querySelector('body'),
-  buttonStartRef: document.querySelector('button[data-action = start] '),
+  buttonStartRef: document.querySelector('button[data-action = start]'),
   buttonStopRef: document.querySelector('button[data-action = stop]'),
 };
 
 refs.buttonStartRef.addEventListener('click', onButtonStart);
 refs.buttonStopRef.addEventListener('click', onButtonStop);
 
-const randomIntegerFromInterval = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
-
-let colorPlant = null;
-let colorId = 0;
+let colorPlant;
 
 function onButtonStart() {
-  refs.buttonStartRef.disabled = true;
-
   colorPlant = setInterval(() => {
-    colorId = randomIntegerFromInterval(0, bodyColors.length - 1);
-
-    // console.log(colorId);
-    refs.bodyRef.style.backgroundColor = bodyColors[colorId];
+    refs.bodyRef.style.backgroundColor = bodyColors[randomIntegerFromInterval(0, 5)];
   }, 1000);
+  refs.buttonStartRef.disabled = true;
 }
 
 function onButtonStop() {
-  refs.buttonStartRef.disabled = false;
   clearInterval(colorPlant);
+  refs.buttonStartRef.disabled = false;
 }
+
+const randomIntegerFromInterval = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
