@@ -8,7 +8,7 @@ const colors = [
 ];
 
 const refs = {
-  bodyRef: document.querySelector('body'),
+  bodyRef: document.body,
   buttonStartRef: document.querySelector('button[data-action = start]'),
   buttonStopRef: document.querySelector('button[data-action = stop]'),
 };
@@ -16,21 +16,23 @@ const refs = {
 refs.buttonStartRef.addEventListener('click', onButtonStart);
 refs.buttonStopRef.addEventListener('click', onButtonStop);
 
-let colorPlant;
+let colorPlant = null;
 
-const randomIntegerFromInterval = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
 
 function onButtonStart() {
   colorPlant = setInterval(() => {
-    refs.bodyRef.style.backgroundColor = bodyColors[randomIntegerFromInterval(0, 5)];
+    console.log("Start");
+    refs.bodyRef.style.backgroundColor = colors[randomIntegerFromInterval(0, colors.length - 1)];
   }, 1000);
   refs.buttonStartRef.disabled = true;
 }
 
 function onButtonStop() {
+  console.log("Stop");
   clearInterval(colorPlant);
   refs.buttonStartRef.disabled = false;
 }
 
+function randomIntegerFromInterval(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
