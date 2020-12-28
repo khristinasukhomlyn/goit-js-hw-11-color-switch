@@ -18,6 +18,10 @@ refs.buttonStopRef.addEventListener('click', onButtonStop);
 
 let colorPlant;
 
+const randomIntegerFromInterval = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
 function onButtonStart() {
   colorPlant = setInterval(() => {
     refs.bodyRef.style.backgroundColor = bodyColors[randomIntegerFromInterval(0, 5)];
@@ -30,6 +34,3 @@ function onButtonStop() {
   refs.buttonStartRef.disabled = false;
 }
 
-const randomIntegerFromInterval = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
